@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--My wab logo-->
+    <link rel="icon" href="https://i.ibb.co/f2L8Gng/20220716-000953.png" />
+    <title>Shivam | Todo app</title>
+
+    <!---Normalize.css is a well known reset stylesheet that is used to align some base styles across browsers to set as a common ground for development.-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/modern-normalize@2.0.0/modern-normalize.min.css"
+    />
+
+    <!---Google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;0,400;0,500;1,200;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!---Css for icon-->
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"
+    />
+    <!--Main stylesheet link-->
+    <link rel="stylesheet" href="todo.css" />
+  </head>
+  <body>
+    
+    <div class="wrapper">
+    </div>
+    <header id="main-header">
+      <div class="container">
+        <h1>Today</h1>
+      </div>
+      <form action="" id="todo-form">
+        <input
+          type="text"
+          name="task-name"
+          id="task-name"
+          placeholder="e.g. Buy some books.."
+          autofocus
+        />
+        <button type="submit">Add task-name</button>
+      </form>
+    </header>
+
+    <section>
+      <div class="container" id="main-content">
+        <div>
+        <ul class="stats">
+          <li>
+            <span>Remaining</span>
+            <span id="remaining-tasks">00 </span>
+          </li>
+          <li>
+            <span>Completed</span>
+            <span id="completed-tasks">00 </span>
+          </li>
+          <li>
+            <span>Total</span>
+            <span id="total-tasks">00</span>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <ul class="todos">
+          <li>
+            <div>
+              <input type="checkbox" name="tasks" id="1" />
+              <span contenteditable="true">Task 1</span>
+            </div>
+
+            <button title="Remove task" class="remove-task">
+              <i class="uil uil-multiply"></i>
+            </button>
+          </li>
+          <li class="completed">
+            <div>
+              <input type="checkbox" name="tasks" id="1" />
+              <span>Task 2</span>
+            </div>
+
+            <button title="Remove task" class="remove-task">
+              <i class="uil uil-multiply"></i>
+            </button>
+          </li>
+          <li>
+            <div>
+              <input type="checkbox" name="tasks" id="1" />
+              <span>Task 3</span>
+            </div>
+
+            <button title="Remove task" class="remove-task">
+              <i class="uil uil-multiply"></i>
+            </button>
+          </li>
+          <li>
+            <div>
+              <input type="checkbox" name="tasks" id="1" />
+              <span>Task 3</span>
+            </div>
+
+            <button title="Remove task" class="remove-task">
+              <i class="uil uil-multiply"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+
+
+    </section>
+    <footer>
+      
+        <p>
+          
+            Design & Code by
+            <a target="_blank" href="linkedin.com/in/shivam-sharma-58160623b"
+              >Shivam Sharma</a
+            >
+            || <a href="#">Code </a>
+         
+        </p>
+     
+    </footer>
+  </div>
+
+    <script src="todo.js"></script>
+
+  </body>
+</html>
