@@ -93,7 +93,7 @@ a:hover {
 }
 
 #todo-form input {
-  color: var(--color-input);
+  color: var(--color-body);
 }
 
 #todo-form input::placeholder {
