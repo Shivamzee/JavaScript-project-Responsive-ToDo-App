@@ -39,10 +39,10 @@ getToDoform.addEventListener("submit", (e) => {
   mainInputBox.focus();
   getToDoform.reset();
 
-  cretetasks(task);
+  createTasks(task);
 });
 
-function createtasks(task) {
+function createTasks(task) {
   const taskEl_li = document.createElement("li");
   taskEl_li.setAttribute("id", task.id);
 
@@ -52,20 +52,19 @@ function createtasks(task) {
 
   const taskEl_html = `
       <div>
-      <input type="checkbox" name="tasks" id=" ${task.id} " ${
+            <input type="checkbox" name="tasks" id=" ${task.id} " ${
     task.isCompleted ? "chacked" : " "
   } />
-      <span  ${!task.isCompleted ? "contenteditable" : " "} >${
+            <span  ${!task.isCompleted ? "contenteditable" : " "} >${
     task.tName
   }</span>
-      </div>
+            </div>
 
-      <button title="Remove the" ${task.tName}  class="remove-task">
-      <i class="uil uil-multiply"></i>
-      </button>
+            <button title="Remove the" ${task.tName}  class="remove-task">
+            <i class="uil uil-multiply"></i>
+            </button>
 
-
-  `;
+      `;
 
   // console.log(taskEl_html);
   taskEl_li.innerHTML = taskEl_html;

@@ -11,16 +11,17 @@ custom properties
 :root {
   --body-font: "Noto Sans", sans-serif;
 
-  --color-body: #e8f3f8;
-  --color-header: #061b25;
+  --color-body: #f3ceca;
+  /* --color-body: #e8f3f8; */
+  --color-header: #cd9296;
   --color-text: var(--color-header);
-  --color-text-muted: #a4d0e3;
-  --color-input: #082937;
+  --color-text-muted: #2f4149;
+  --color-input: #dfb6b9;
   --color-input-lighter: #0b374a;
-  --color-secondary: #ff8c42;
-  --color-secondary-darker: #cc7035;
-  --color-secondary-lighter: #ffa368;
-  --color-tertiary: #1c89b8;
+  --color-secondary: #213f99;
+  --color-secondary-darker: #1f3473;
+  --color-secondary-lighter: #2448b7;
+  --color-tertiary: #1f3473;
   --color-text-badge: #e8f3f8;
   --color-disabled: #d2e7f1;
   --color-text-disabled: #77b8d4;
@@ -66,7 +67,7 @@ a {
 }
 
 a:hover {
-  color: var(--color-secondary);
+  color: var(--color-header);
 }
 
 /* form css start */
@@ -90,6 +91,7 @@ a:hover {
 #todo-form input:hover,
 #todo-form input:focus {
   background-color: var(--color-input-lighter);
+  color: wheat;
 }
 
 #todo-form input {
@@ -106,8 +108,8 @@ a:hover {
   border-radius: var(--global-border-radius);
   font-weight: 700;
   text-transform: uppercase;
-  color: white;
-  background-color: var(--color-secondary);
+  color: wheat;
+  background-color: var(--color-input-lighter);
 }
 
 #todo-form button:hover {
@@ -155,8 +157,8 @@ small,
 }
 
 .stats span:first-child {
-  background-color: var(--color-header);
-  color: var(--color-text-muted);
+  background-color: var(--color-input-lighter);
+  color: wheat;
   border-radius: var(--global-border-radius) 0 0 var(--global-border-radius);
 }
 
@@ -196,6 +198,10 @@ footer a {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.todos li span {
+  color: #082937;
 }
 
 .todos li div {
@@ -301,6 +307,7 @@ input[type="checkbox"]:checked::before {
   }
   footer {
     text-decoration: none;
+    margin-top: 15vh;
   }
 
   footer p,
