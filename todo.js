@@ -9,18 +9,23 @@ const completedTasksbtn = document.querySelector("#completed-tasks");
 const totalTasksbtn = document.querySelector("#total-tasks");
 
 // targeting input box
-
 const mainInputBox = document.querySelector("#todo-form input");
 
-let tasksList = JSON.parse(localStorage.getItem("taskList")) || [];
+let tasksList = JSON.parse(localStorage.getItem("tasksList")) || [];
+if (localStorage.getItem("tasksList")) {
+  tasksList.map((task) => {
+    createTasks(task);
+    // console.log(task);
+  });
+}
 
 getToDoform.addEventListener("submit", (e) => {
   e.preventDefault();
 
   let inputValue = mainInputBox.value;
-  console.log(inputValue);
+  // console.log(inputValue);
 
-  if (inputValue === " ") {
+  if (inputValue === "") {
     return;
   }
 
@@ -35,11 +40,9 @@ getToDoform.addEventListener("submit", (e) => {
 
   tasksList.push(task);
   localStorage.setItem("tasksList", JSON.stringify(tasksList));
-
+  createTasks(task);
   mainInputBox.focus();
   getToDoform.reset();
-
-  createTasks(task);
 });
 
 function createTasks(task) {
@@ -52,24 +55,35 @@ function createTasks(task) {
 
   const taskEl_html = `
       <div>
-            <input type="checkbox" name="tasks" id=" ${task.id} " ${
+          <input type="checkbox" name="tasks" id=" ${task.id} " ${
     task.isCompleted ? "chacked" : " "
   } />
-            <span  ${!task.isCompleted ? "contenteditable" : " "} >${
+                <span  ${!task.isCompleted ? "contenteditable" : ""} >${
     task.tName
   }</span>
-            </div>
+      </div>
 
-            <button title="Remove the" ${task.tName}  class="remove-task">
-            <i class="uil uil-multiply"></i>
-            </button>
+          <button title="Remove the" ${task.tName}  class="remove-task">
+          <i class="uil uil-multiply"></i>
+          </button>
 
       `;
 
   // console.log(taskEl_html);
   taskEl_li.innerHTML = taskEl_html;
 
-  console.log(taskEl_li);
+  // console.log(taskEl_li);
 
   todoList.appendChild(taskEl_li);
+  countTasks();
+}
+
+function countTasks() {
+  const completedTasksList = tasksList.filter((task) => {
+    task.isCompleted === true;
+  });
+
+  totalTasksbtn.textContent = tasksList.length;
+  completedTasksbtn.textContent = completedTasksList.length;
+  remainingTasksbtn.textContent = tasksList.length - completedTasksList.length;
 }
