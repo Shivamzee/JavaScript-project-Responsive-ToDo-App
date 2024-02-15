@@ -49,8 +49,7 @@ getToDoform.addEventListener("submit", (e) => {
 todoList.addEventListener("click", (e) => {
   if (
     e.target.classList.contains("remove-task") ||
-    e.target.parentElement.classList.contains("remove-task") ||
-    e.target.parentClass.parentClass.classList.contains("remove-task")
+    e.target.parentElement.classList.contains("remove-task")
   ) {
     // closest() to target nearest elem
     const taskId = e.target.closest("li").id;
@@ -65,6 +64,12 @@ todoList.addEventListener("input", (e) => {
   completedTask(taskId, e.target);
 });
 
+todoList.addEventListener("keydown", (e) => {
+  if (e.keyCode === 13) {
+    e.preventDefault();
+  }
+});
+
 function createTasks(task) {
   const taskEl_li = document.createElement("li");
   taskEl_li.setAttribute("id", task.id);
@@ -76,7 +81,7 @@ function createTasks(task) {
   const taskEl_html = `
       <div>
           <input type="checkbox" name="tasks" id=" ${task.id} " ${
-    task.isCompleted ? "chacked" : " "
+    task.isCompleted ? "checked" : ""
   } />
          <span  ${!task.isCompleted ? "contenteditable" : ""} >${
     task.tName
@@ -101,9 +106,10 @@ function createTasks(task) {
 // code to count tasks in storage
 function countTasks() {
   const completedTasksList = tasksList.filter((task) => {
-    task.isCompleted === true;
+    return task.isCompleted === true;
   });
 
+  console.log(completedTasksList);
   totalTasksbtn.textContent = tasksList.length;
   completedTasksbtn.textContent = completedTasksList.length;
   remainingTasksbtn.textContent = tasksList.length - completedTasksList.length;
@@ -121,8 +127,8 @@ function deleteTask(taskId) {
 }
 
 function completedTask(taskId, elm) {
-  const task = task.find((task) => task.id === parseInt(taskId));
-
+  const task = tasksList.find((task) => task.id === parseInt(taskId));
+  console.log(task);
   if (elm.hasAttribute("contenteditable")) {
     task.tName = elm.textContent; // to edit name
   } else {
@@ -141,5 +147,6 @@ function completedTask(taskId, elm) {
   }
 
   localStorage.setItem("tasksList", JSON.stringify(tasksList));
+
   countTasks();
 }
