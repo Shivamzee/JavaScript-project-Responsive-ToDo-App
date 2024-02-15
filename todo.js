@@ -45,6 +45,26 @@ getToDoform.addEventListener("submit", (e) => {
   getToDoform.reset();
 });
 
+// event target to delete task
+todoList.addEventListener("click", (e) => {
+  if (
+    e.target.classList.contains("remove-task") ||
+    e.target.parentElement.classList.contains("remove-task") ||
+    e.target.parentClass.parentClass.classList.contains("remove-task")
+  ) {
+    // closest() to target nearest elem
+    const taskId = e.target.closest("li").id;
+    deleteTask(taskId);
+  }
+});
+
+// code check that task is complete
+todoList.addEventListener("input", (e) => {
+  const taskId = e.target.closest("li").id;
+
+  completedTask(taskId, e.target);
+});
+
 function createTasks(task) {
   const taskEl_li = document.createElement("li");
   taskEl_li.setAttribute("id", task.id);
@@ -58,14 +78,14 @@ function createTasks(task) {
           <input type="checkbox" name="tasks" id=" ${task.id} " ${
     task.isCompleted ? "chacked" : " "
   } />
-                <span  ${!task.isCompleted ? "contenteditable" : ""} >${
+         <span  ${!task.isCompleted ? "contenteditable" : ""} >${
     task.tName
   }</span>
       </div>
 
-          <button title="Remove the" ${task.tName}  class="remove-task">
-          <i class="uil uil-multiply"></i>
-          </button>
+      <button title="Remove the" ${task.tName}  class="remove-task">
+      <i class="uil uil-multiply"></i>
+      </button>
 
       `;
 
@@ -78,6 +98,7 @@ function createTasks(task) {
   countTasks();
 }
 
+// code to count tasks in storage
 function countTasks() {
   const completedTasksList = tasksList.filter((task) => {
     task.isCompleted === true;
@@ -86,4 +107,39 @@ function countTasks() {
   totalTasksbtn.textContent = tasksList.length;
   completedTasksbtn.textContent = completedTasksList.length;
   remainingTasksbtn.textContent = tasksList.length - completedTasksList.length;
+}
+
+function deleteTask(taskId) {
+  tasksList = tasksList.filter((task) => task.id !== parseInt(taskId));
+
+  // code to update localStorage
+  localStorage.setItem("tasksList", JSON.stringify(tasksList));
+
+  document.getElementById(taskId).remove();
+
+  countTasks(); // for how many tasks are left in storage
+}
+
+function completedTask(taskId, elm) {
+  const task = task.find((task) => task.id === parseInt(taskId));
+
+  if (elm.hasAttribute("contenteditable")) {
+    task.tName = elm.textContent; // to edit name
+  } else {
+    const span = elm.nextElementSibling;
+    const parent = elm.closest("li");
+
+    task.isCompleted = !task.isCompleted;
+
+    if (task.isCompleted) {
+      span.removeAttribute("contenteditable");
+      parent.classList.add("completed");
+    } else {
+      span.setAttribute("contenteditable", "true");
+      parent.classList.remove("completed");
+    }
+  }
+
+  localStorage.setItem("tasksList", JSON.stringify(tasksList));
+  countTasks();
 }
